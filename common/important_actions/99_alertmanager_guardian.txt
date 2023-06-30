@@ -1,0 +1,55 @@
+﻿action_can_assign_guardian_to_dynasty_kid = {
+	priority = 97
+	combine_into_one = yes
+	check_create_action = {
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = alertmanager_education_disabled
+					has_character_flag = alertmanager_educationdynasty_disabled
+					has_character_flag = alertmanager_gardian_disabled
+				}
+			}
+			every_courtier = {
+				limit = {
+					NOT = {
+						is_child_of = root
+					}
+					dynasty = root.dynasty
+					exists = liege
+					liege = root
+					is_adult = no
+					age >= childhood_education_start_age
+					num_of_relation_guardian = 0
+					has_education_focus_trigger = yes
+					root = {
+						is_character_interaction_valid = {
+							recipient = prev
+							interaction = educate_child_interaction
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_can_assign_guardian_to_dynasty_kid
+					actor = root
+					recipient = this
+					secondary_recipient = this
+				}
+			}
+		}
+	}
+
+	effect = {
+		scope:recipient = {
+			open_view_data = {
+				view = character
+			}
+		}
+		open_interaction_window = {
+			interaction = educate_child_interaction
+			actor = scope:actor
+			recipient = scope:actor
+			secondary_recipient = scope:secondary_recipient
+		}
+	}
+}

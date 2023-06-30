@@ -1,0 +1,181 @@
+﻿on_death = {
+	on_actions = {
+		alertmanager_on_death
+	}
+}
+
+alertmanager_on_death = {
+	trigger = {
+		exists = player_heir
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_invitations_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_invitations_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_invitationsdynasty_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_invitationsdynasty_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_hook_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_hook_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_education_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_education_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_educationdynasty_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_educationdynasty_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_gardian_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_gardian_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_focus_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_focus_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriage_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriage_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagedynasty_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagechild_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagechild_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriageadult_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriageadult_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagecourtier_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagecourtier_infertile_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_giving_land_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_giving_land_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_convert_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_convert_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_convertcourtier_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_convertcourtier_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_convertvassal_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_convertvassal_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_convertsubvassal_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_convertsubvassal_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_convertbaron_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_convertbaron_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_witchcraft_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_witchcraft_disabled
+			}
+		}
+	}
+}

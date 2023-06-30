@@ -1,0 +1,114 @@
+﻿is_swaying_nobody = {
+	any_scheme = {
+		OR = {
+			scheme_type = courting
+			scheme_type = befriend
+			scheme_type = seduce
+			scheme_type = sway
+			scheme_type = learn_language
+			scheme_type = elope
+			scheme_type = convert_to_witchcraft
+		}
+		count < 1
+	}
+}
+
+has_pressed_claims = {
+	any_claim = {
+		explicit = yes
+		pressed = yes
+	}
+}
+
+has_implicit_claims = {
+	any_claim = {
+		explicit = no
+	}
+}
+
+is_going_to_inherit_titles = {
+	any_heir_to_title = {
+		count > 0
+	}
+}
+
+might_get_a_pressed_claim = {
+	trigger_if = {
+		limit = {
+			is_female = yes
+		}
+		any_parent = {
+			is_ruler = yes
+			NOT = { has_realm_law = male_only_law }
+		}
+	}
+	trigger_else = {
+		any_parent = {
+			is_ruler = yes
+			NOT = { has_realm_law = female_only_law }
+		}
+	}
+}
+
+is_not_an_heir_parent = {
+	is_going_to_inherit_titles = no
+	has_pressed_claims = no
+	has_implicit_claims = no
+	might_get_a_pressed_claim = no
+}
+
+is_not_an_actual_heir = {
+	is_adult = yes
+	is_ruler = no
+	is_claimant = no
+	is_going_to_inherit_titles = no
+	any_parent = {
+		is_not_an_heir_parent = yes
+		count = all
+	}
+}
+
+can_be_landed_safely = {
+	house = root.house
+	NOT = {
+		has_trait = bastard	
+	}
+	is_not_an_actual_heir = yes
+	OR = { # gender law
+		AND = {
+			is_female = no
+			root = {
+				OR = {
+					has_realm_law = male_only_law
+					has_realm_law = male_preference_law
+					has_realm_law = equal_law
+				}
+			}
+		}
+		AND = {
+			is_female = yes
+			root = {
+				OR = {
+					has_realm_law = female_only_law
+					has_realm_law = female_preference_law
+					has_realm_law = equal_law
+				}
+			}
+		}
+	}
+	OR = { # fertility
+		AND = {
+			age <= 30
+			is_visibly_fertile = yes
+		}
+		any_child = {
+			count > 0
+		}
+	}
+	root = {
+		is_character_interaction_valid = {
+			recipient = prev
+			interaction = grant_titles_interaction
+		}
+	}
+}

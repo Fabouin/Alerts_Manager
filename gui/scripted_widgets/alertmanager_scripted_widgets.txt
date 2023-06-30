@@ -1,0 +1,2 @@
+﻿gui/alertmanager_main.gui = alertmanager_main_window
+gui/alertmanager_button.gui = alertmanager_button

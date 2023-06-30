@@ -1,0 +1,124 @@
+﻿action_dynasty_member_can_marry = {
+	combine_into_one = yes
+	priority = 99
+	check_create_action = {
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = alertmanager_marriage_disabled
+					has_character_flag = alertmanager_marriagedynasty_disabled
+					has_character_flag = alertmanager_marriageadult_disabled
+				}
+			}
+			every_child = {
+				if = {
+					limit = {
+						is_landed = yes
+						is_married = no
+						is_betrothed = no
+						is_adult = yes
+						can_marry_trigger = yes
+						is_visibly_fertile = yes
+						root = {
+							is_character_interaction_valid = {
+								recipient = prev
+								interaction = marry_off_interaction
+							}
+						}
+					}
+					try_create_important_action = {
+						important_action_type = action_dynasty_member_can_marry
+						actor = root
+						recipient = this
+					}
+				}
+			}
+			every_courtier = {
+				limit = {
+					is_married = no
+					is_betrothed = no
+					is_adult = yes
+					dynasty = root.dynasty
+					can_marry_trigger = yes
+					is_visibly_fertile = yes
+					root = {
+						is_character_interaction_valid = {
+							recipient = prev
+							interaction = marry_off_interaction
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_dynasty_member_can_marry
+					actor = root
+					recipient = this
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = alertmanager_marriage_disabled
+					has_character_flag = alertmanager_marriagedynasty_disabled
+					has_character_flag = alertmanager_marriagechild_disabled
+				}
+			}
+			every_child = {
+				if = {
+					limit = {
+						is_landed = yes
+						is_married = no
+						is_betrothed = no
+						is_adult = no
+						can_marry_trigger = yes
+						root = {
+							is_character_interaction_valid = {
+								recipient = prev
+								interaction = marry_off_interaction
+							}
+						}
+					}
+					try_create_important_action = {
+						important_action_type = action_dynasty_member_can_marry
+						actor = root
+						recipient = this
+					}
+				}
+			}
+			every_courtier = {
+				limit = {
+					is_married = no
+					is_betrothed = no
+					is_adult = no
+					dynasty = root.dynasty
+					can_marry_trigger = yes
+					#is_visibly_fertile = yes
+					root = {
+						is_character_interaction_valid = {
+							recipient = prev
+							interaction = marry_off_interaction
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_dynasty_member_can_marry
+					actor = root
+					recipient = this
+				}
+			}
+		}
+	}
+
+	effect = {
+		scope:recipient = {
+			open_view_data = {
+				view = character
+			}
+		}
+		open_interaction_window = {
+			interaction = marry_off_interaction
+			actor = scope:actor
+			recipient = scope:recipient
+		}
+	}
+}
