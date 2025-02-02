@@ -1,10 +1,10 @@
 widget = {
-	visible = "[And( Not( IsPauseMenuShown ), And(Not(IsRightWindowOpen), IsDefaultGUIMode))]"
+	visible = "[And( Not( IsGameViewOpen('barbershop') ), And( Not( IsPauseMenuShown ), And(Not(IsRightWindowOpen), IsDefaultGUIMode)))]"
 	parentanchor = bottom|right
-	layer = top
+	layer = bottom
 	
 	name = alertmanager_button
-	position = { 5 -285 }
+	position = { 5 -310 }
 	size = { 40 40 }
 	using = Animation_ShowHide_Quick
 	

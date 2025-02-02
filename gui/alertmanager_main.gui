@@ -1,7 +1,7 @@
 window = {
 	name = "alertmanager_main_window"
 	parentanchor = center|center
-	position = { -50 100 }
+	position = { -50 20 }
 	size = { 1050 %100 }
 	layer = windows_layer
 	filter_mouse = all
@@ -45,10 +45,68 @@ window = {
 		}
 		
 		widget = {
-			size = { 900 800 }
+		size = { 900 400 }
+            vbox = {
+                spacing = 10
+                layoutpolicy_horizontal = expanding
+                layoutpolicy_vertical = expanding
+                hbox = {
+                    layoutpolicy_horizontal = expanding
+        
+                    button_tab = {
+                        layoutpolicy_horizontal = expanding
+                        text = "alertmanager_title_invitations"
+                        default_format = "medium"
+        
+                        onclick = "[GetVariableSystem.Set( 'alertmanager_tabs', 'invitations' )]"
+                        down = "[Or(GetVariableSystem.HasValue( 'alertmanager_tabs', 'invitations' ), Not(GetVariableSystem.Exists('alertmanager_tabs')))]"
+                    }
+                    button_tab = {
+                        layoutpolicy_horizontal = expanding
+                        text = "alertmanager_title_education"
+                        default_format = "medium"
+        
+                        onclick = "[GetVariableSystem.Set( 'alertmanager_tabs', 'education' )]"
+                        down = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'education' )]"
+                    }
+                    button_tab = {
+                        layoutpolicy_horizontal = expanding
+                        text = "alertmanager_title_marriage"
+                        default_format = "medium"
+        
+                        onclick = "[GetVariableSystem.Set( 'alertmanager_tabs', 'marriage' )]"
+                        down = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'marriage' )]"
+                    }
+                    button_tab = {
+                        layoutpolicy_horizontal = expanding
+                        text = "alertmanager_title_give_lands"
+                        default_format = "medium"
+        
+                        onclick = "[GetVariableSystem.Set( 'alertmanager_tabs', 'give_lands' )]"
+                        down = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'give_lands' )]"
+                    }
+                    button_tab = {
+                        layoutpolicy_horizontal = expanding
+                        text = "alertmanager_title_convert"
+                        default_format = "medium"
+        
+                        onclick = "[GetVariableSystem.Set( 'alertmanager_tabs', 'convert' )]"
+                        down = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'convert' )]"
+                    }
+                    button_tab = {
+                        layoutpolicy_horizontal = expanding
+                        text = "alertmanager_title_witchcraft"
+                        default_format = "medium"
+                        datacontext = "[GetScriptedGui('alertmanager_toggle_witchcraft')]"
+                        visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+
+                        onclick = "[GetVariableSystem.Set( 'alertmanager_tabs', 'witchcraft' )]"
+                        down = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'witchcraft' )]"
+                    }
+                }
                 vbox = {
-                    spacing = 10
-                    layoutpolicy_vertical = expanding
+                    visible = "[Or(GetVariableSystem.HasValue( 'alertmanager_tabs', 'invitations' ), Not(GetVariableSystem.Exists('alertmanager_tabs')))]"
+                    layoutpolicy_horizontal = expanding
                     text_label_center = {
                         text = "alertmanager_title_invitations"
                         default_format = "#high"
@@ -116,10 +174,32 @@ window = {
                             }
                         }
                         expand = {}  
-                    }  
-                    divider_light = {
+                    } 
+                    hbox = {  
                         layoutpolicy_horizontal = expanding
+                        spacing = 30
+                        button_checkbox_label = {
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_invitationsknight')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_invite_knights_tooltip"
+                
+                            blockoverride "checkbox"
+                            {
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
+                
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_invite_knights"
+                            }
+                        }
+                        expand = {}  
                     }
+                }
+                vbox = {
+                    visible = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'education' )]"
+                    layoutpolicy_horizontal = expanding
                     text_label_center = {
                         text = "alertmanager_title_education"
                         default_format = "#high"
@@ -150,10 +230,10 @@ window = {
                         spacing = 30
                         button_checkbox_label = {
                             
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_educationdynasty')]"
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_education_dynasty')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
                             enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_educationdynasty_tooltip"
+                            tooltip = "alertmanager_widget_education_dynasty_tooltip"
 
                             blockoverride "checkbox"
                             {
@@ -162,15 +242,15 @@ window = {
 
                             blockoverride "text"
                             {
-                                text = "alertmanager_widget_educationdynasty"
+                                text = "alertmanager_widget_education_dynasty"
                             }
                         }
                         button_checkbox_label = {
                             
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_gardian')]"
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_gardian_dynasty')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
                             enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_gardian_tooltip"
+                            tooltip = "alertmanager_widget_gardian_dynasty_tooltip"
 
                             blockoverride "checkbox"
                             {
@@ -180,15 +260,15 @@ window = {
 
                             blockoverride "text"
                             {
-                                text = "alertmanager_widget_gardian"
+                                text = "alertmanager_widget_gardian_dynasty"
                             }
                         }
                         button_checkbox_label = {
                             
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_focus')]"
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_focus_dynasty')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
                             enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_focus_tooltip"
+                            tooltip = "alertmanager_widget_focus_dynasty_tooltip"
 
                             blockoverride "checkbox"
                             {
@@ -198,22 +278,81 @@ window = {
 
                             blockoverride "text"
                             {
-                                text = "alertmanager_widget_focus"
+                                text = "alertmanager_widget_focus_dynasty"
                             }
                         }
                         expand = {}  
                     }  
-
-                    divider_light = {
+                    hbox = {  
                         layoutpolicy_horizontal = expanding
-                    }
+                        spacing = 30
+                        button_checkbox_label = {
+                            
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_education_courtier')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_education_courtier_tooltip"
+
+                            blockoverride "checkbox"
+                            {
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
+
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_education_courtier"
+                            }
+                        }
+                        button_checkbox_label = {
+                            
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_gardian_courtier')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_gardian_courtier_tooltip"
+
+                            blockoverride "checkbox"
+                            {
+                                size = { 23 23 }
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
+
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_gardian_courtier"
+                            }
+                        }
+                        button_checkbox_label = {
+                            
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_focus_courtier')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_focus_courtier_tooltip"
+
+                            blockoverride "checkbox"
+                            {
+                                size = { 23 23 }
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
+
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_focus_courtier"
+                            }
+                        }
+                        expand = {}  
+                    } 
+                }
+                vbox = {
+                    visible = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'marriage' )]"
+                    layoutpolicy_horizontal = expanding
+                    layoutpolicy_vertical = expanding
                     text_label_center = {
                         text = "alertmanager_title_marriage"
                         default_format = "#high"
                         using = Font_Size_Medium
                     }
-                    hbox = {  
-                        layoutpolicy_horizontal = expanding
+                    spacer = { size = { 0 20 } }
+                    hbox = {                          
                         button_checkbox_label = {
                             datacontext = "[GetScriptedGui('alertmanager_toggle_marriage')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
@@ -230,16 +369,409 @@ window = {
                             }
                         }
                         expand = {}  
+                    }
+                    spacer = { size = { 0 10 } }  
+                    hbox  = {  
+                        layoutpolicy_horizontal = expanding
+                        layoutpolicy_vertical = expanding
+                        vbox = {  
+                            #spacing = 5
+                            layoutpolicy_horizontal = expanding
+                            layoutpolicy_vertical = expanding
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriagedynasty_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriagedynasty"
+                                    }
+                                }
+                                
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty_child')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriagechild_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriagechild"
+                                    }
+                                }
+                                expand = {} 
+                           
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty_adult')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriageadult_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriageadult"
+                                    }
+                                }
+                                expand = {}  
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty_girl')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriagegirl_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriagegirl"
+                                    }
+                                }
+                                expand = {} 
+
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty_boy')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriageboy_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriageboy"
+                                    }
+                                }
+                                expand = {}  
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty_unworthy')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriage_unworthy_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriage_unworthy"
+                                    }
+                                }
+                                expand = {} 
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty_infertile')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriage_infertile_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriage_infertile"
+                                    }
+                                }
+                                expand = {} 
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty_closefamily')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriagedynasty_closefamily_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriagedynasty_closefamily"
+                                    }
+                                }
+                                expand = {}  
+                            }
+                        }
+                        spacer = { size = { 0 0 } }
+                        divider_light = {
+                            layoutpolicy_vertical = expanding
+                        }
+                        spacer = { size = { 30 0 } }
+                        vbox = {  
+                            #spacing = 30
+                            layoutpolicy_horizontal = expanding
+                            layoutpolicy_vertical = expanding
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriagecourtier_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriagecourtier"
+                                    }
+                                }
+                                
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_child')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriagechild_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriagechild"
+                                    }
+                                }
+                                expand = {} 
+
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_adult')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriageadult_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriageadult"
+                                    }
+                                }
+                                expand = {}  
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_girl')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriagegirl_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriagegirl"
+                                    }
+                                }
+                                expand = {} 
+
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_boy')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriageboy_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriageboy"
+                                    }
+                                }
+                                expand = {}  
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_unworthy')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriage_unworthy_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriage_unworthy"
+                                    }
+                                }
+                                expand = {} 
+                            }
+                            hbox  = {
+                                layoutpolicy_horizontal = expanding
+                                button_checkbox_label = {
+                                    
+                                    datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_infertile')]"
+                                    onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    tooltip = "alertmanager_widget_marriage_infertile_tooltip"
+
+                                    blockoverride "checkbox"
+                                    {
+                                        size = { 23 23 }
+                                        checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                                    }
+
+                                    blockoverride "text"
+                                    {
+                                        text = "alertmanager_widget_marriage_infertile"
+                                    }
+                                }
+                                expand = {}  
+                            }
+                        }
+                    }
+                }
+                vbox = {
+                    visible = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'give_lands' )]"
+                    layoutpolicy_horizontal = expanding
+                    text_label_center = {
+                        text = "alertmanager_title_give_lands"
+                        default_format = "#high"
+                        using = Font_Size_Medium
+                    }
+                    hbox = {  
+                        layoutpolicy_horizontal = expanding
+                        button_checkbox_label = {
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_giving_land')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_give_lands_tooltip"
+
+                            blockoverride "checkbox"
+                            {
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
+
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_give_lands"
+                            }
+                        }
+                        expand = {}  
+                    } 
+                }
+                vbox = {
+                    visible = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'convert' )]"
+                    layoutpolicy_horizontal = expanding
+                    text_label_center = {
+                        text = "alertmanager_title_convert"
+                        default_format = "#high"
+                        using = Font_Size_Medium
+                    }
+                    hbox = {  
+                        layoutpolicy_horizontal = expanding
+                        button_checkbox_label = {
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_convert')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_convert_tooltip"
+
+                            blockoverride "checkbox"
+                            {
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
+
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_convert"
+                            }
+                        }
+                        expand = {}
                     }  
                     hbox = {  
                         layoutpolicy_horizontal = expanding
                         spacing = 30
                         button_checkbox_label = {
                             
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_marriagedynasty')]"
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_convert_courtier')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
                             enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_marriagedynasty_tooltip"
+                            tooltip = "alertmanager_widget_convert_courtier_tooltip"
 
                             blockoverride "checkbox"
                             {
@@ -248,56 +780,20 @@ window = {
 
                             blockoverride "text"
                             {
-                                text = "alertmanager_widget_marriagedynasty"
+                                text = "alertmanager_widget_convert_courtier"
                             }
                         }
-                        button_checkbox_label = {
-                            
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_marriagechild')]"
-                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_marriagechild_tooltip"
-
-                            blockoverride "checkbox"
-                            {
-                                size = { 23 23 }
-                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            }
-
-                            blockoverride "text"
-                            {
-                                text = "alertmanager_widget_marriagechild"
-                            }
-                        }
-                        button_checkbox_label = {
-                            
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_marriageadult')]"
-                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_marriageadult_tooltip"
-
-                            blockoverride "checkbox"
-                            {
-                                size = { 23 23 }
-                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            }
-
-                            blockoverride "text"
-                            {
-                                text = "alertmanager_widget_marriageadult"
-                            }
-                        }
-                        expand = {}  
+                        expand = {}    
                     }
                     hbox = {  
                         layoutpolicy_horizontal = expanding
                         spacing = 30
                         button_checkbox_label = {
                             
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier')]"
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_convert_vassal')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
                             enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_marriagecourtier_tooltip"
+                            tooltip = "alertmanager_widget_convert_vassal_tooltip"
 
                             blockoverride "checkbox"
                             {
@@ -306,15 +802,15 @@ window = {
 
                             blockoverride "text"
                             {
-                                text = "alertmanager_widget_marriagecourtier"
+                                text = "alertmanager_widget_convert_vassal"
                             }
                         }
                         button_checkbox_label = {
-                            
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_unworthy')]"
+                                
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_convert_subvassal')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
                             enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_marriagecourtier_unworthy_tooltip"
+                            tooltip = "alertmanager_widget_convert_subvassal_tooltip"
 
                             blockoverride "checkbox"
                             {
@@ -324,15 +820,15 @@ window = {
 
                             blockoverride "text"
                             {
-                                text = "alertmanager_widget_marriagecourtier_unworthy"
+                                text = "alertmanager_widget_convert_subvassal"
                             }
                         }
                         button_checkbox_label = {
                             
-                            datacontext = "[GetScriptedGui('alertmanager_toggle_marriagecourtier_infertile')]"
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_convert_baron')]"
                             onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
                             enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                            tooltip = "alertmanager_widget_marriagecourtier_infertile_tooltip"
+                            tooltip = "alertmanager_widget_convert_baron_tooltip"
 
                             blockoverride "checkbox"
                             {
@@ -342,172 +838,58 @@ window = {
 
                             blockoverride "text"
                             {
-                                text = "alertmanager_widget_marriagecourtier_infertile"
+                                text = "alertmanager_widget_convert_baron"
                             }
                         }
                         expand = {}  
                     }
-                divider_light = {
-                    layoutpolicy_horizontal = expanding
                 }
-                text_label_center = {
-                    text = "alertmanager_title_give_lands"
-                    default_format = "#high"
-                    using = Font_Size_Medium
-                }
-                hbox = {  
+                vbox = {
+                    visible = "[GetVariableSystem.HasValue( 'alertmanager_tabs', 'witchcraft' )]"
                     layoutpolicy_horizontal = expanding
-                    button_checkbox_label = {
-                        datacontext = "[GetScriptedGui('alertmanager_toggle_giving_land')]"
-                        onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        tooltip = "alertmanager_widget_give_lands_tooltip"
-
-                        blockoverride "checkbox"
-                        {
-                            checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        }
-
-                        blockoverride "text"
-                        {
-                            text = "alertmanager_widget_give_lands"
-                        }
+                    text_label_center = {
+                        text = "alertmanager_title_witchcraft"
+                        default_format = "#high"
+                        using = Font_Size_Medium
                     }
-                    expand = {}  
-                }  
-                divider_light = {
-                    layoutpolicy_horizontal = expanding
-                }
-                text_label_center = {
-                    text = "alertmanager_title_convert"
-                    default_format = "#high"
-                    using = Font_Size_Medium
-                }
-                hbox = {  
-                    layoutpolicy_horizontal = expanding
-                    button_checkbox_label = {
-                        datacontext = "[GetScriptedGui('alertmanager_toggle_convert')]"
-                        onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        tooltip = "alertmanager_widget_convert_tooltip"
+                    hbox = {  
+                        layoutpolicy_horizontal = expanding
+                        spacing = 30
+                        button_checkbox_label = {
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_witchcraft')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_witchcraft_tooltip"
 
-                        blockoverride "checkbox"
-                        {
-                            checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        }
+                            blockoverride "checkbox"
+                            {
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
 
-                        blockoverride "text"
-                        {
-                            text = "alertmanager_widget_convert"
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_witchcraft"
+                            }
                         }
+                        button_checkbox_label = {
+                            datacontext = "[GetScriptedGui('alertmanager_toggle_witchcraftwithcoven')]"
+                            onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            tooltip = "alertmanager_widget_witchcraftwithcoven_tooltip"
+
+                            blockoverride "checkbox"
+                            {
+                                size = { 23 23 }
+                                checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+                            }
+
+                            blockoverride "text"
+                            {
+                                text = "alertmanager_widget_witchcraftwithcoven"
+                            }
+                        }
+                        expand = {}  
                     }
-                    expand = {}
-                }  
-                hbox = {  
-                    layoutpolicy_horizontal = expanding
-                    spacing = 30
-                    button_checkbox_label = {
-                        
-                        datacontext = "[GetScriptedGui('alertmanager_toggle_convert_courtier')]"
-                        onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        tooltip = "alertmanager_widget_convert_courtier_tooltip"
-
-                        blockoverride "checkbox"
-                        {
-                            checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        }
-
-                        blockoverride "text"
-                        {
-                            text = "alertmanager_widget_convert_courtier"
-                        }
-                    }
-                    expand = {}    
-                }
-                hbox = {  
-                    layoutpolicy_horizontal = expanding
-                    spacing = 30
-                    button_checkbox_label = {
-                        
-                        datacontext = "[GetScriptedGui('alertmanager_toggle_convert_vassal')]"
-                        onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        tooltip = "alertmanager_widget_convert_vassal_tooltip"
-
-                        blockoverride "checkbox"
-                        {
-                            checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        }
-
-                        blockoverride "text"
-                        {
-                            text = "alertmanager_widget_convert_vassal"
-                        }
-                    }
-                    button_checkbox_label = {
-                            
-                        datacontext = "[GetScriptedGui('alertmanager_toggle_convert_subvassal')]"
-                        onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        tooltip = "alertmanager_widget_convert_subvassal_tooltip"
-
-                        blockoverride "checkbox"
-                        {
-                            size = { 23 23 }
-                            checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        }
-
-                        blockoverride "text"
-                        {
-                            text = "alertmanager_widget_convert_subvassal"
-                        }
-                    }
-                    button_checkbox_label = {
-                        
-                        datacontext = "[GetScriptedGui('alertmanager_toggle_convert_baron')]"
-                        onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        tooltip = "alertmanager_widget_convert_baron_tooltip"
-
-                        blockoverride "checkbox"
-                        {
-                            size = { 23 23 }
-                            checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        }
-
-                        blockoverride "text"
-                        {
-                            text = "alertmanager_widget_convert_baron"
-                        }
-                    }
-                    expand = {}  
-                }
-                divider_light = {
-                    layoutpolicy_horizontal = expanding
-                }
-                text_label_center = {
-                    text = "alertmanager_title_witchcraft"
-                    default_format = "#high"
-                    using = Font_Size_Medium
-                }
-                hbox = {  
-                    layoutpolicy_horizontal = expanding
-                    button_checkbox_label = {
-                        datacontext = "[GetScriptedGui('alertmanager_toggle_witchcraft')]"
-                        onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        tooltip = "alertmanager_widget_witchcraft_tooltip"
-
-                        blockoverride "checkbox"
-                        {
-                            checked = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
-                        }
-
-                        blockoverride "text"
-                        {
-                            text = "alertmanager_widget_witchcraft"
-                        }
-                    }
-                    expand = {}  
                 }
                 expand = {}
             }

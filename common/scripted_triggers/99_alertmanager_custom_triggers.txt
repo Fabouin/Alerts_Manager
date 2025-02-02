@@ -112,3 +112,28 @@ can_be_landed_safely = {
 		}
 	}
 }
+
+is_better_than = {
+    parameter:other_knight = character
+
+    # Comparer la prowess
+    if = {
+        limit = {
+            prowess > other_knight.prowess
+        }
+        return = yes
+    }
+    return = no
+}
+
+worst_knight = {
+    limit = {
+        is_knight = yes
+        is_in_my_court = yes
+    }
+    sort_by = {
+        attribute = prowess
+        order = ascending
+    }
+    first = yes
+}

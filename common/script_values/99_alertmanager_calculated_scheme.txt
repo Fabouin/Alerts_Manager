@@ -458,3 +458,5 @@ predicted_success_chance_for_witch_scheme = {
 	}
 	multiply = predicted_success_chance_for_witch_scheme_multiplier
 }
+
+

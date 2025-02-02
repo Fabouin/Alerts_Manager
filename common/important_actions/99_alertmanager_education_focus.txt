@@ -6,13 +6,74 @@
 			limit = {
 				NOT = {
 					has_character_flag = alertmanager_education_disabled
-					has_character_flag = alertmanager_educationdynasty_disabled
-					has_character_flag = alertmanager_focus_disabled
+					has_character_flag = alertmanager_education_dynasty_disabled
+					has_character_flag = alertmanager_focus_dynasty_disabled
+				}
+				OR = {
+					has_character_flag = alertmanager_education_courtier_disabled
+					has_character_flag = alertmanager_focus_courtier_disabled
 				}
 			}
 			every_courtier = {
 				limit = {
 					dynasty = root.dynasty
+					exists = liege
+					liege = root
+					is_adult = no
+					age >= 3
+					has_education_focus_trigger = no
+				}
+				try_create_important_action = {
+					important_action_type = action_can_set_education_focus_to_dynasty_kid
+					actor = root
+					recipient = this
+					secondary_recipient = this
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = alertmanager_education_disabled
+					has_character_flag = alertmanager_education_courtier_disabled
+					has_character_flag = alertmanager_focus_courtier_disabled
+				}
+				OR = {
+					has_character_flag = alertmanager_education_dynasty_disabled
+					has_character_flag = alertmanager_focus_dynasty_disabled
+				}
+			}
+			every_courtier = {
+				limit = {
+					NOT = {
+						dynasty = root.dynasty
+					}
+					exists = liege
+					liege = root
+					is_adult = no
+					age >= 3
+					has_education_focus_trigger = no
+				}
+				try_create_important_action = {
+					important_action_type = action_can_set_education_focus_to_dynasty_kid
+					actor = root
+					recipient = this
+					secondary_recipient = this
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = alertmanager_education_disabled
+					has_character_flag = alertmanager_education_dynasty_disabled
+					has_character_flag = alertmanager_focus_dynasty_disabled
+					has_character_flag = alertmanager_education_courtier_disabled
+					has_character_flag = alertmanager_focus_courtier_disabled
+				}
+			}
+			every_courtier = {
+				limit = {
 					exists = liege
 					liege = root
 					is_adult = no

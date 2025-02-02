@@ -66,7 +66,30 @@ alertmanager_toggle_hook = {
 		}
 	}
 }
-
+alertmanager_toggle_invitationsknight = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_invitationsknight_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_invitations_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_invitationsknight_disabled
+			}
+			remove_character_flag = alertmanager_invitationsknight_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_invitationsknight_disabled
+		}
+	}
+}
 alertmanager_toggle_education = {
 	scope = character
 	is_shown = {
@@ -86,11 +109,11 @@ alertmanager_toggle_education = {
 		}
 	}
 }
-alertmanager_toggle_educationdynasty = {
+alertmanager_toggle_education_dynasty = {
 	scope = character
 	is_shown = {
 		NOT = {
-			has_character_flag = alertmanager_educationdynasty_disabled
+			has_character_flag = alertmanager_education_dynasty_disabled
 		}
 	}
 	is_valid = {
@@ -101,62 +124,137 @@ alertmanager_toggle_educationdynasty = {
 	effect = {
 		if = {
 			limit = {
-				has_character_flag = alertmanager_educationdynasty_disabled
+				has_character_flag = alertmanager_education_dynasty_disabled
 			}
-			remove_character_flag = alertmanager_educationdynasty_disabled
+			remove_character_flag = alertmanager_education_dynasty_disabled
 		}
 		else = {
-			add_character_flag = alertmanager_educationdynasty_disabled
+			add_character_flag = alertmanager_education_dynasty_disabled
 		}
 	}
 }
-alertmanager_toggle_gardian = {
+alertmanager_toggle_gardian_dynasty = {
 	scope = character
 	is_shown = {
 		NOT = {
-			has_character_flag = alertmanager_gardian_disabled
+			has_character_flag = alertmanager_gardian_dynasty_disabled
 		}
 	}
 	is_valid = {
 		NOT = {
 			has_character_flag = alertmanager_education_disabled
-			has_character_flag = alertmanager_educationdynasty_disabled
+			has_character_flag = alertmanager_education_dynasty_disabled
 		}
 	}
 	effect = {
 		if = {
 			limit = {
-				has_character_flag = alertmanager_gardian_disabled
+				has_character_flag = alertmanager_gardian_dynasty_disabled
 			}
-			remove_character_flag = alertmanager_gardian_disabled
+			remove_character_flag = alertmanager_gardian_dynasty_disabled
 		}
 		else = {
-			add_character_flag = alertmanager_gardian_disabled
+			add_character_flag = alertmanager_gardian_dynasty_disabled
 		}
 	}
 }
-alertmanager_toggle_focus = {
+alertmanager_toggle_focus_dynasty = {
 	scope = character
 	is_shown = {
 		NOT = {
-			has_character_flag = alertmanager_focus_disabled
+			has_character_flag = alertmanager_focus_dynasty_disabled
 		}
 	}
 	is_valid = {
 		NOT = {
 			has_character_flag = alertmanager_education_disabled
-			has_character_flag = alertmanager_educationdynasty_disabled
+			has_character_flag = alertmanager_education_dynasty_disabled
 		}
 	}
 	effect = {
 		if = {
 			limit = {
-				has_character_flag = alertmanager_focus_disabled
+				has_character_flag = alertmanager_focus_dynasty_disabled
 			}
-			remove_character_flag = alertmanager_focus_disabled
+			remove_character_flag = alertmanager_focus_dynasty_disabled
 		}
 		else = {
-			add_character_flag = alertmanager_focus_disabled
+			add_character_flag = alertmanager_focus_dynasty_disabled
+		}
+	}
+}
+
+alertmanager_toggle_education_courtier = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_education_courtier_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_education_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_education_courtier_disabled
+			}
+			remove_character_flag = alertmanager_education_courtier_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_education_courtier_disabled
+		}
+	}
+}
+alertmanager_toggle_gardian_courtier = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_gardian_courtier_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_education_disabled
+			has_character_flag = alertmanager_education_courtier_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_gardian_courtier_disabled
+			}
+			remove_character_flag = alertmanager_gardian_courtier_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_gardian_courtier_disabled
+		}
+	}
+}
+alertmanager_toggle_focus_courtier = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_focus_courtier_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_education_disabled
+			has_character_flag = alertmanager_education_courtier_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_focus_courtier_disabled
+			}
+			remove_character_flag = alertmanager_focus_courtier_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_focus_courtier_disabled
 		}
 	}
 }
@@ -206,11 +304,11 @@ alertmanager_toggle_marriagedynasty = {
 	}
 }
 
-alertmanager_toggle_marriagechild = {
+alertmanager_toggle_marriagedynasty_child = {
 	scope = character
 	is_shown = {
 		NOT = {
-			has_character_flag = alertmanager_marriagechild_disabled
+			has_character_flag = alertmanager_marriagedynasty_child_disabled
 		}
 	}
 	is_valid = {
@@ -222,21 +320,21 @@ alertmanager_toggle_marriagechild = {
 	effect = {
 		if = {
 			limit = {
-				has_character_flag = alertmanager_marriagechild_disabled
+				has_character_flag = alertmanager_marriagedynasty_child_disabled
 			}
-			remove_character_flag = alertmanager_marriagechild_disabled
+			remove_character_flag = alertmanager_marriagedynasty_child_disabled
 		}
 		else = {
-			add_character_flag = alertmanager_marriagechild_disabled
+			add_character_flag = alertmanager_marriagedynasty_child_disabled
 		}
 	}
 }
 
-alertmanager_toggle_marriageadult = {
+alertmanager_toggle_marriagedynasty_adult = {
 	scope = character
 	is_shown = {
 		NOT = {
-			has_character_flag = alertmanager_marriageadult_disabled
+			has_character_flag = alertmanager_marriagedynasty_adult_disabled
 		}
 	}
 	is_valid = {
@@ -248,12 +346,142 @@ alertmanager_toggle_marriageadult = {
 	effect = {
 		if = {
 			limit = {
-				has_character_flag = alertmanager_marriageadult_disabled
+				has_character_flag = alertmanager_marriagedynasty_adult_disabled
 			}
-			remove_character_flag = alertmanager_marriageadult_disabled
+			remove_character_flag = alertmanager_marriagedynasty_adult_disabled
 		}
 		else = {
-			add_character_flag = alertmanager_marriageadult_disabled
+			add_character_flag = alertmanager_marriagedynasty_adult_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagedynasty_boy = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagedynasty_boy_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagedynasty_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_boy_disabled
+			}
+			remove_character_flag = alertmanager_marriagedynasty_boy_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagedynasty_boy_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagedynasty_girl = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagedynasty_girl_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagedynasty_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_girl_disabled
+			}
+			remove_character_flag = alertmanager_marriagedynasty_girl_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagedynasty_girl_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagedynasty_unworthy = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagedynasty_unworthy_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagedynasty_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_unworthy_disabled
+			}
+			remove_character_flag = alertmanager_marriagedynasty_unworthy_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagedynasty_unworthy_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagedynasty_infertile = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagedynasty_infertile_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagedynasty_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_infertile_disabled
+			}
+			remove_character_flag = alertmanager_marriagedynasty_infertile_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagedynasty_infertile_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagedynasty_closefamily = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagedynasty_closefamily_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagedynasty_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_closefamily_disabled
+			}
+			remove_character_flag = alertmanager_marriagedynasty_closefamily_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagedynasty_closefamily_disabled
 		}
 	}
 }
@@ -282,6 +510,111 @@ alertmanager_toggle_marriagecourtier = {
 		}
 	}
 }
+
+alertmanager_toggle_marriagecourtier_child = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagecourtier_child_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagecourtier_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_child_disabled
+			}
+			remove_character_flag = alertmanager_marriagecourtier_child_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagecourtier_child_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagecourtier_adult = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagecourtier_adult_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagecourtier_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_adult_disabled
+			}
+			remove_character_flag = alertmanager_marriagecourtier_adult_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagecourtier_adult_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagecourtier_boy = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagecourtier_boy_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagecourtier_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_boy_disabled
+			}
+			remove_character_flag = alertmanager_marriagecourtier_boy_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagecourtier_boy_disabled
+		}
+	}
+}
+
+alertmanager_toggle_marriagecourtier_girl = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_character_flag = alertmanager_marriagecourtier_girl_disabled
+		}
+	}
+	is_valid = {
+		NOT = {
+			has_character_flag = alertmanager_marriage_disabled
+			has_character_flag = alertmanager_marriagecourtier_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_girl_disabled
+			}
+			remove_character_flag = alertmanager_marriagecourtier_girl_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_marriagecourtier_girl_disabled
+		}
+	}
+}
+
 
 alertmanager_toggle_marriagecourtier_unworthy = {
 	scope = character
@@ -505,6 +838,43 @@ alertmanager_toggle_witchcraft = {
 		}
 		else = {
 			add_character_flag = alertmanager_witchcraft_disabled
+		}
+	}
+}
+
+alertmanager_toggle_witchcraftwithcoven = {
+	scope = character
+	is_shown = {
+		OR = {
+			has_trait = witch
+			any_secret = {
+				secret_type = secret_witch
+			}
+		}
+		NOT = {
+			has_character_flag = alertmanager_witchcraftwithcoven_disabled
+		}
+	}
+	is_valid = {
+		OR = {
+			has_trait = witch
+			any_secret = {
+				secret_type = secret_witch
+			}
+		}
+		NOT = {
+			has_character_flag = alertmanager_witchcraft_disabled
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				has_character_flag = alertmanager_witchcraftwithcoven_disabled
+			}
+			remove_character_flag = alertmanager_witchcraftwithcoven_disabled
+		}
+		else = {
+			add_character_flag = alertmanager_witchcraftwithcoven_disabled
 		}
 	}
 }

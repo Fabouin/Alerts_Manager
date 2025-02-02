@@ -43,26 +43,50 @@ alertmanager_on_death = {
 		}
 		if = {
 			limit = {
-				has_character_flag = alertmanager_educationdynasty_disabled
+				has_character_flag = alertmanager_education_dynasty_disabled
 			}
 			player_heir = {
-				add_character_flag = alertmanager_educationdynasty_disabled
+				add_character_flag = alertmanager_education_dynasty_disabled
 			}
 		}
 		if = {
 			limit = {
-				has_character_flag = alertmanager_gardian_disabled
+				has_character_flag = alertmanager_gardian_dynasty_disabled
 			}
 			player_heir = {
-				add_character_flag = alertmanager_gardian_disabled
+				add_character_flag = alertmanager_gardian_dynasty_disabled
 			}
 		}
 		if = {
 			limit = {
-				has_character_flag = alertmanager_focus_disabled
+				has_character_flag = alertmanager_focus_dynasty_disabled
 			}
 			player_heir = {
-				add_character_flag = alertmanager_focus_disabled
+				add_character_flag = alertmanager_focus_dynasty_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_education_courtier_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_education_courtier_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_gardian_courtier_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_gardian_courtier_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_focus_courtier_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_focus_courtier_disabled
 			}
 		}
 		if = {
@@ -83,18 +107,58 @@ alertmanager_on_death = {
 		}
 		if = {
 			limit = {
-				has_character_flag = alertmanager_marriagechild_disabled
+				has_character_flag = alertmanager_marriagedynasty_child_disabled
 			}
 			player_heir = {
-				add_character_flag = alertmanager_marriagechild_disabled
+				add_character_flag = alertmanager_marriagedynasty_child_disabled
 			}
 		}
 		if = {
 			limit = {
-				has_character_flag = alertmanager_marriageadult_disabled
+				has_character_flag = alertmanager_marriagedynasty_adult_disabled
 			}
 			player_heir = {
-				add_character_flag = alertmanager_marriageadult_disabled
+				add_character_flag = alertmanager_marriagedynasty_adult_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_boy_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagedynasty_boy_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_girl_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagedynasty_girl_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_infertile_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagedynasty_infertile_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_unworthy_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagedynasty_unworthy_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagedynasty_closefamily_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagedynasty_closefamily_disabled
 			}
 		}
 		if = {
@@ -103,6 +167,38 @@ alertmanager_on_death = {
 			}
 			player_heir = {
 				add_character_flag = alertmanager_marriagecourtier_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_child_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagecourtier_child_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_adult_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagecourtier_adult_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_boy_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagecourtier_boy_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_marriagecourtier_girl_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_marriagecourtier_girl_disabled
 			}
 		}
 		if = {
@@ -175,6 +271,22 @@ alertmanager_on_death = {
 			}
 			player_heir = {
 				add_character_flag = alertmanager_witchcraft_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_witchcraftwithcoven_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_witchcraftwithcoven_disabled
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = alertmanager_invitationsknight_disabled
+			}
+			player_heir = {
+				add_character_flag = alertmanager_invitationsknight_disabled
 			}
 		}
 	}

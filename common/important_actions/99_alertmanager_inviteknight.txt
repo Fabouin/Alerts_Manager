@@ -1,0 +1,46 @@
+﻿action_invite_better_knights = {
+    combine_into_one = yes
+    priority = 300
+    check_create_action = {
+        if = {
+            limit = {
+                NOT = {
+                    has_character_flag = alertmanager_invitationsknight_disabled
+                }
+            }
+            every_courtier = {
+                if = {
+                    limit = {
+                        is_adult = yes
+                        is_female = no
+                        is_in_my_court = no
+                        root = {
+							is_character_interaction_potentially_accepted = {
+								recipient = prev
+								interaction = invite_to_court_interaction
+							}
+						}
+                        root = {
+                            worst_knight = {
+                                is_better_than = prev
+                            }
+                        }
+                    }
+                    try_create_important_action = {
+                        important_action_type = action_invite_better_knights
+                        actor = root
+                        recipient = this
+                    }
+				}
+			}
+		}
+	}
+
+	effect = {
+		open_interaction_window = {
+			interaction = invite_to_court_interaction
+			actor = scope:actor
+			recipient = scope:recipient
+		}
+	}
+}

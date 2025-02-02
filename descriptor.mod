@@ -1,9 +1,9 @@
-version="1.0"
+version="1.3"
 tags={
-	"Decisions"
 	"Utilities"
 	"Gameplay"
 	"Character Focuses"
 }
 name="Alerts Manager"
-supported_version="1.9.*"
+supported_version="1.*.*"
+remote_file_id="2996519353"

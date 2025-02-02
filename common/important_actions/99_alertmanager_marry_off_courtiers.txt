@@ -8,56 +8,7 @@
 				NOT = {
 					has_character_flag = alertmanager_marriage_disabled
 					has_character_flag = alertmanager_marriagecourtier_disabled
-					has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
 				}
-				has_character_flag = alertmanager_marriagecourtier_infertile_disabled
-
-			}
-			every_courtier = {
-				limit = {
-					is_married = no
-					is_betrothed = no
-					can_marry_trigger = yes
-					is_visibly_fertile = yes
-					OR = {
-						has_trait = beauty_good_1
-						has_trait = beauty_good_2
-						has_trait = beauty_good_3
-						has_trait = intellect_good_1
-						has_trait = intellect_good_2
-						has_trait = intellect_good_3
-						has_trait = physique_good_1
-						has_trait = physique_good_2
-						has_trait = physique_good_3
-						has_trait = fecund
-						has_trait = pure_blooded
-					}
-					NOT = {
-						dynasty = root.dynasty
-					}
-					root = {
-						is_character_interaction_valid = {
-							recipient = prev
-							interaction = marry_off_interaction
-						}
-					}
-				}
-				try_create_important_action = {
-					important_action_type = action_marry_off_courtiers
-					actor = root
-					recipient = this
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_character_flag = alertmanager_marriage_disabled
-					has_character_flag = alertmanager_marriagecourtier_disabled
-					has_character_flag = alertmanager_marriagecourtier_infertile_disabled
-
-				}
-				has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
 			}
 			every_courtier = {
 				limit = {
@@ -74,92 +25,410 @@
 						}
 					}
 				}
-				try_create_important_action = {
-					important_action_type = action_marry_off_courtiers
-					actor = root
-					recipient = this
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_character_flag = alertmanager_marriage_disabled
-					has_character_flag = alertmanager_marriagecourtier_disabled
-				}
-				has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
-				has_character_flag = alertmanager_marriagecourtier_infertile_disabled
-
-			}
-			every_courtier = {
-				limit = {
-					is_married = no
-					is_betrothed = no
-					can_marry_trigger = yes
-					is_visibly_fertile = yes
-					NOT = {
-						dynasty = root.dynasty
+				if = {
+					limit = {
+						root = {
+							NOT = {
+								has_character_flag = alertmanager_marriagecourtier_adult_disabled
+							}
+						}
+						is_adult = yes
 					}
-					root = {
-						is_character_interaction_valid = {
-							recipient = prev
-							interaction = marry_off_interaction
+					if = {
+						limit = {
+							root = {
+								NOT = {
+									has_character_flag = alertmanager_marriagecourtier_boy_disabled
+								}
+							}
+							is_female = no
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+								is_visibly_fertile = yes
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									}
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+								is_visibly_fertile = yes
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+					}
+					if = {
+						limit = {
+							root = {
+								NOT = {
+									has_character_flag = alertmanager_marriagecourtier_girl_disabled
+								}
+							}
+							is_female = yes
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+								is_visibly_fertile = yes
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									}
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+								is_visibly_fertile = yes
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
 						}
 					}
 				}
-				try_create_important_action = {
-					important_action_type = action_marry_off_courtiers
-					actor = root
-					recipient = this
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_character_flag = alertmanager_marriage_disabled
-					has_character_flag = alertmanager_marriagecourtier_disabled
-					has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
-					has_character_flag = alertmanager_marriagecourtier_infertile_disabled				
-				}
-			}
-			every_courtier = {
-				limit = {
-					is_married = no
-					is_betrothed = no
-					can_marry_trigger = yes
-					OR = {
-						has_trait = beauty_good_1
-						has_trait = beauty_good_2
-						has_trait = beauty_good_3
-						has_trait = intellect_good_1
-						has_trait = intellect_good_2
-						has_trait = intellect_good_3
-						has_trait = physique_good_1
-						has_trait = physique_good_2
-						has_trait = physique_good_3
-						has_trait = fecund
-						has_trait = pure_blooded
+				#Enfant
+				if = {
+					limit = {
+						root = {
+							NOT = {
+								has_character_flag = alertmanager_marriagecourtier_child_disabled
+							}
+						}
+						is_adult = no
 					}
-					NOT = {
-						dynasty = root.dynasty
-					}
-					root = {
-						is_character_interaction_valid = {
-							recipient = prev
-							interaction = marry_off_interaction
+					if = {
+						limit = {
+							root = {
+								NOT = {
+									has_character_flag = alertmanager_marriagecourtier_boy_disabled
+								}
+							}
+							is_female = no
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									}
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
 						}
 					}
-				}
-				try_create_important_action = {
-					important_action_type = action_marry_off_courtiers
-					actor = root
-					recipient = this
+					if = {
+						limit = {
+							root = {
+								NOT = {
+									has_character_flag = alertmanager_marriagecourtier_girl_disabled
+								}
+							}
+							is_female = yes
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									}
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+								OR = {
+									has_trait = beauty_good_1
+									has_trait = beauty_good_2
+									has_trait = beauty_good_3
+									has_trait = intellect_good_1
+									has_trait = intellect_good_2
+									has_trait = intellect_good_3
+									has_trait = physique_good_1
+									has_trait = physique_good_2
+									has_trait = physique_good_3
+									has_trait = fecund
+									has_trait = pure_blooded
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									NOT = {
+										has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+									}
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+						if = {
+							limit = {
+								root = {
+									has_character_flag = alertmanager_marriagecourtier_unworthy_disabled
+									has_character_flag = alertmanager_marriagecourtier_infertile_disabled
+								}
+							}
+							try_create_important_action = {
+								important_action_type = action_marry_off_courtiers
+								actor = root
+								recipient = this
+							}
+						}
+					}
 				}
 			}
 		}
 	}
-
 	effect = {
 		scope:recipient = {
 			open_view_data = {

@@ -6,8 +6,12 @@
 			limit = {
 				NOT = {
 					has_character_flag = alertmanager_education_disabled
-					has_character_flag = alertmanager_educationdynasty_disabled
-					has_character_flag = alertmanager_gardian_disabled
+					has_character_flag = alertmanager_education_dynasty_disabled
+					has_character_flag = alertmanager_gardian_dynasty_disabled
+				}
+				OR = {
+					has_character_flag = alertmanager_education_courtier_disabled
+					has_character_flag = alertmanager_gardian_courtier_disabled
 				}
 			}
 			every_courtier = {
@@ -16,6 +20,84 @@
 						is_child_of = root
 					}
 					dynasty = root.dynasty
+					exists = liege
+					liege = root
+					is_adult = no
+					age >= childhood_education_start_age
+					num_of_relation_guardian = 0
+					has_education_focus_trigger = yes
+					root = {
+						is_character_interaction_valid = {
+							recipient = prev
+							interaction = educate_child_interaction
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_can_assign_guardian_to_dynasty_kid
+					actor = root
+					recipient = this
+					secondary_recipient = this
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = alertmanager_education_disabled
+					has_character_flag = alertmanager_education_courtier_disabled
+					has_character_flag = alertmanager_gardian_courtier_disabled
+				}
+				OR = {
+					has_character_flag = alertmanager_education_dynasty_disabled
+					has_character_flag = alertmanager_gardian_dynasty_disabled
+				}
+			}
+			every_courtier = {
+				limit = {
+					NOT = {
+						is_child_of = root
+					}
+					NOT = {
+						dynasty = root.dynasty
+					}
+					exists = liege
+					liege = root
+					is_adult = no
+					age >= childhood_education_start_age
+					num_of_relation_guardian = 0
+					has_education_focus_trigger = yes
+					root = {
+						is_character_interaction_valid = {
+							recipient = prev
+							interaction = educate_child_interaction
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_can_assign_guardian_to_dynasty_kid
+					actor = root
+					recipient = this
+					secondary_recipient = this
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = alertmanager_education_disabled
+					has_character_flag = alertmanager_education_courtier_disabled
+					has_character_flag = alertmanager_gardian_courtier_disabled
+					has_character_flag = alertmanager_education_dynasty_disabled
+					has_character_flag = alertmanager_gardian_dynasty_disabled
+				}
+
+			}
+			every_courtier = {
+				limit = {
+					NOT = {
+						is_child_of = root
+					}
 					exists = liege
 					liege = root
 					is_adult = no
